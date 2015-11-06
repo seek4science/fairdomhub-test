@@ -4,7 +4,7 @@ require 'selenium-webdriver'
 
 class TestSuite < Test::Unit::TestCase
   def setup
-    @base_url = "http://fairdomhub.org/"
+    @base_url = "https://fairdomhub.org/"
   end
 
   def test_suite
