@@ -25,6 +25,7 @@ class TestSuite < Test::Unit::TestCase
     get_page(browser)
     create_page(browser)
     post_page(browser)
+    association_box(browser)
     browser.quit
   end
 
@@ -37,7 +38,18 @@ class TestSuite < Test::Unit::TestCase
     get_page(browser)
     create_page(browser)
     post_page(browser)
+    association_box(browser)
     browser.quit
+  end
+
+  def association_box(browser)
+    browser.get(@base_url + "data_files/new")
+    Selenium::WebDriver::Wait.new(:timeout => 10)
+    browser.find_element(:xpath, "//div[@id='content']/div/form/div[2]/div[10]/div").click
+    wait = Selenium::WebDriver::Wait.new(:timeout => 10)
+    wait.until { browser.find_element(:id, "possible_assays").displayed? }
+    Selenium::WebDriver::Support::Select.new(browser.find_element(:id, "possible_assays")).select_by(:text, "Affy Transcriptomics Templates")
+    assert !60.times{ break if (browser.find_element(:css, "ul.related_asset_list > li").text == "Affy Transcriptomics Templates  [remove]" rescue false); sleep 1 }
   end
 
   def post_page(browser)
