@@ -5,6 +5,11 @@ require 'selenium-webdriver'
 class TestSuite < Test::Unit::TestCase
   def setup
     @base_url = "https://fairdomhub.org/"
+    @verification_errors = []
+  end
+
+  def teardown
+    assert_equal [], @verification_errors
   end
 
   def test_suite
@@ -43,13 +48,26 @@ class TestSuite < Test::Unit::TestCase
   end
 
   def association_box(browser)
-    browser.get(@base_url + "data_files/new")
-    Selenium::WebDriver::Wait.new(:timeout => 10)
-    browser.find_element(:xpath, "//div[@id='content']/div/form/div[2]/div[10]/div").click
+    browser.get(@base_url + "/assays/new?class=experimental")
+    assert browser.find_element(:xpath, "//form[@id='new_assay']/div[11]/div").text == "Data files"
+    browser.find_element(:xpath, "//form[@id='new_assay']/div[11]/div").click
     wait = Selenium::WebDriver::Wait.new(:timeout => 10)
-    wait.until { browser.find_element(:id, "possible_assays").displayed? }
-    Selenium::WebDriver::Support::Select.new(browser.find_element(:id, "possible_assays")).select_by(:text, "Affy Transcriptomics Templates")
-    assert !60.times{ break if (browser.find_element(:css, "ul.related_asset_list > li").text == "Affy Transcriptomics Templates  [remove]" rescue false); sleep 1 }
+    wait.until { browser.find_element(:id, "possible_data_files").displayed? }
+    Selenium::WebDriver::Support::Select.new(browser.find_element(:id, "possible_data_files")).select_by(:text, "3' or Whole Gene Expression Array Template (Affymetrix)")
+    verify { assert browser.find_element(:css, "ul.related_asset_list > li").text == "3' or Whole Gene Expression Array Template (Affymetrix)  [remove]" }
+    browser.find_element(:link, "remove").click
+    verify { assert_equal "None", browser.find_element(:id, "data_file_to_list").text }
+    browser.find_element(:id, "include_other_project_data_files").click
+    wait = Selenium::WebDriver::Wait.new(:timeout => 10)
+    wait.until { browser.find_element(:id, "possible_data_files").displayed? }
+    Selenium::WebDriver::Support::Select.new(browser.find_element(:id, "possible_data_files")).select_by(:text, "090714 chemostat overview fluxes & quinones wt")
+    verify { assert_equal "090714 chemostat overview fluxes & quinones wt  [remove]", browser.find_element(:css, "ul.related_asset_list > li").text }
+  end
+
+  def verify(&blk)
+    yield
+  rescue Test::Unit::AssertionFailedError => ex
+    @verification_errors << ex
   end
 
   def post_page(browser)
