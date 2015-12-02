@@ -56,7 +56,7 @@ class TestSuite < Test::Unit::TestCase
     Selenium::WebDriver::Support::Select.new(browser.find_element(:id, "possible_data_files")).select_by(:text, "3' or Whole Gene Expression Array Template (Affymetrix)")
     verify { assert browser.find_element(:css, "ul.related_asset_list > li").text == "3' or Whole Gene Expression Array Template (Affymetrix)  [remove]" }
     browser.find_element(:link, "remove").click
-    verify { assert_equal "None", browser.find_element(:id, "data_file_to_list").text }
+    verify{  assert_equal "None", browser.find_element(:id, "data_file_to_list").text }
     browser.find_element(:id, "include_other_project_data_files").click
     wait = Selenium::WebDriver::Wait.new(:timeout => 10)
     wait.until { browser.find_element(:id, "possible_data_files").displayed? }
@@ -85,109 +85,109 @@ class TestSuite < Test::Unit::TestCase
   def get_page(browser)
     #homepage
     browser.get @base_url
-    assert_equal('The SEEK',browser.title)
+    verify {  assert_equal('The SEEK',browser.title) }
 
     #yellow pages
     browser.get @base_url + "programmes"
-    assert_equal('The SEEK Programmes',browser.title)
+    verify {  assert_equal('The SEEK Programmes',browser.title) }
     browser.get @base_url + "programmes/2"
-    assert_equal('The SEEK Programmes',browser.title)
+    verify {  assert_equal('The SEEK Programmes',browser.title) }
     browser.get @base_url + "people"
-    assert_equal('The SEEK People',browser.title)
+    verify {  assert_equal('The SEEK People',browser.title) }
     browser.get @base_url + "people/372"
-    assert_equal('The SEEK People',browser.title)
+    verify {  assert_equal('The SEEK People',browser.title) }
     browser.get @base_url + "projects"
-    assert_equal('The SEEK Projects',browser.title)
+    verify {  assert_equal('The SEEK Projects',browser.title) }
     browser.get @base_url + "projects/19"
-    assert_equal('The SEEK Projects',browser.title)
+    verify {  assert_equal('The SEEK Projects',browser.title) }
     browser.get @base_url + "institutions"
-    assert_equal('The SEEK Institutions',browser.title)
+    verify {  assert_equal('The SEEK Institutions',browser.title) }
     browser.get @base_url + "institutions/7"
-    assert_equal('The SEEK Institutions',browser.title)
+    verify {  assert_equal('The SEEK Institutions',browser.title) }
 
     #isa
     browser.get @base_url + "investigations"
-    assert_equal('The SEEK Investigations',browser.title)
+    verify {  assert_equal('The SEEK Investigations',browser.title) }
     browser.get @base_url + "investigations/56"
-    assert_equal('The SEEK Investigations',browser.title)
+    verify {  assert_equal('The SEEK Investigations',browser.title) }
     browser.get @base_url + "studies"
-    assert_equal('The SEEK Studies',browser.title)
+    verify {  assert_equal('The SEEK Studies',browser.title) }
     browser.get @base_url + "studies/138"
-    assert_equal('The SEEK Studies',browser.title)
+    verify {  assert_equal('The SEEK Studies',browser.title) }
     browser.get @base_url + "assays"
-    assert_equal('The SEEK Assays',browser.title)
+    verify {  assert_equal('The SEEK Assays',browser.title) }
     browser.get @base_url + "assays/296"
-    assert_equal('The SEEK Assays',browser.title)
+    verify {  assert_equal('The SEEK Assays',browser.title) }
 
     #assets
     browser.get @base_url + "data_files"
-    assert_equal('The SEEK Data files',browser.title)
+    verify {  assert_equal('The SEEK Data files',browser.title) }
     browser.get @base_url + "data_files/1101"
-    assert_equal('The SEEK Data files',browser.title)
+    verify {  assert_equal('The SEEK Data files',browser.title) }
     browser.get @base_url + "data_files/1101/explore?version=1"
-    assert_equal('The SEEK Data files',browser.title)
+    verify {  assert_equal('The SEEK Data files',browser.title) }
     browser.get @base_url + "models"
-    assert_equal('The SEEK Models',browser.title)
+    verify {  assert_equal('The SEEK Models',browser.title) }
     browser.get @base_url + "models/138"
-    assert_equal('The SEEK Models',browser.title)
+    verify {  assert_equal('The SEEK Models',browser.title) }
     browser.get @base_url + "sops"
-    assert_equal('The SEEK SOPs',browser.title)
+    verify {  assert_equal('The SEEK SOPs',browser.title) }
     browser.get @base_url + "sops/203"
-    assert_equal('The SEEK SOPs',browser.title)
+    verify {  assert_equal('The SEEK SOPs',browser.title) }
     browser.get @base_url + "publications"
-    assert_equal('The SEEK Publications',browser.title)
+    verify {  assert_equal('The SEEK Publications',browser.title) }
     browser.get @base_url + "publications/240"
-    assert_equal('The SEEK Publications',browser.title)
+    verify {  assert_equal('The SEEK Publications',browser.title) }
 
     #biosamples
     #browser.get @base_url + "biosamples"
-    #assert_equal('The SEEK Biosamples',browser.title)
+    #verify {  assert_equal('The SEEK Biosamples',browser.title) }
     browser.get @base_url + "organisms/1933753700"
-    assert_equal('The SEEK Organisms',browser.title)
+    verify {  assert_equal('The SEEK Organisms',browser.title) }
     browser.get @base_url + "strains"
-    assert_equal('The SEEK Strains',browser.title)
+    verify {  assert_equal('The SEEK Strains',browser.title) }
     browser.get @base_url + "strains/27"
-    assert_equal('The SEEK Strains',browser.title)
+    verify {  assert_equal('The SEEK Strains',browser.title) }
     #browser.get @base_url + "specimens"
-    #assert_equal('The SEEK Cell cultures',browser.title)
+    #verify {  assert_equal('The SEEK Cell cultures',browser.title) }
     #browser.get @base_url + "specimens/2"
-    #assert_equal('The SEEK Cell cultures',browser.title)
+    #verify {  assert_equal('The SEEK Cell cultures',browser.title) }
     #browser.get @base_url + "samples"
-    #assert_equal('The SEEK Samples',browser.title)
+    #verify {  assert_equal('The SEEK Samples',browser.title) }
     #browser.get @base_url + "samples/2"
-    #assert_equal('The SEEK Samples',browser.title)
+    #verify {  assert_equal('The SEEK Samples',browser.title) }
 
     #activities
     browser.get @base_url + "presentations"
-    assert_equal('The SEEK Presentations',browser.title)
+    verify {  assert_equal('The SEEK Presentations',browser.title) }
     browser.get @base_url + "presentations/52"
-    assert_equal('The SEEK Presentations',browser.title)
+    verify {  assert_equal('The SEEK Presentations',browser.title) }
     browser.get @base_url + "presentations/52/content_blobs/2149/view_pdf_content"
-    assert_equal('The SEEK : Viewing SeekNewFeaturesPalsParis2013.odp',browser.title)
+    verify {  assert_equal('The SEEK : Viewing SeekNewFeaturesPalsParis2013.odp',browser.title) }
     browser.get @base_url + "events"
-    assert_equal('The SEEK Events',browser.title)
+    verify {  assert_equal('The SEEK Events',browser.title) }
     browser.get @base_url + "events/26"
-    assert_equal('The SEEK Events',browser.title)
+    verify {  assert_equal('The SEEK Events',browser.title) }
 
     #help
     browser.get @base_url + "help/index"
-    assert_equal('SEEK Development Help',browser.title)
+    verify {  assert_equal('SEEK Development Help',browser.title) }
     #browser.get @base_url + "help/faq"
-    #assert_equal('The SEEK Help',browser.title)
+    #verify {  assert_equal('The SEEK Help',browser.title) }
     #browser.get @base_url + "help/templates"
-    #assert_equal('The SEEK Help',browser.title)
+    #verify {  assert_equal('The SEEK Help',browser.title) }
     #browser.get @base_url + "help/isa-best-practice"
-    #assert_equal('The SEEK Help',browser.title)
+    #verify {  assert_equal('The SEEK Help',browser.title) }
 
     #tags
     browser.get @base_url + "tags/"
-    assert_equal('The SEEK',browser.title)
+    verify {  assert_equal('The SEEK',browser.title) }
     browser.get @base_url + "tags/19"
-    assert_equal('The SEEK',browser.title)
+    verify {  assert_equal('The SEEK',browser.title) }
 
     #imprint
     browser.get @base_url + "home/imprint"
-    assert_equal('The SEEK',browser.title)
+    verify {  assert_equal('The SEEK',browser.title) }
   end
 
   def login(browser, user_name, password)
@@ -205,17 +205,17 @@ class TestSuite < Test::Unit::TestCase
   def create_page(browser)
     #assets
     browser.get @base_url + "data_files/new"
-    assert_not_nil browser.find_element(:id, 'data_file_title')
+    verify {  assert_not_nil browser.find_element(:id, 'data_file_title') }
     browser.get @base_url + "models/new"
-    assert_not_nil browser.find_element(:id, 'model_title')
+    verify {  assert_not_nil browser.find_element(:id, 'model_title') }
     browser.get @base_url + "sops/new"
-    assert_not_nil browser.find_element(:id, 'sop_title')
+    verify {  assert_not_nil browser.find_element(:id, 'sop_title') }
     browser.get @base_url + "publications/new"
-    assert_not_nil browser.find_element(:id, 'protocol')
+    verify {  assert_not_nil browser.find_element(:id, 'protocol') }
 
     #biosamples
     browser.get @base_url + "strains/new"
-    assert_not_nil browser.find_element(:id, 'strain_title')
+    verify {  assert_not_nil browser.find_element(:id, 'strain_title') }
     #browser.get @base_url + "specimens/new"
     #assert_not_nil browser.find_element(:id, 'specimen_title')
     #browser.get @base_url + "samples/new"
@@ -223,16 +223,16 @@ class TestSuite < Test::Unit::TestCase
 
     #isa
     browser.get @base_url + "investigations/new"
-    assert_not_nil browser.find_element(:id, 'investigation_title')
+    verify {  assert_not_nil browser.find_element(:id, 'investigation_title') }
     browser.get @base_url + "studies/new"
-    assert_not_nil browser.find_element(:id, 'study_title')
+    verify {  assert_not_nil browser.find_element(:id, 'study_title') }
     browser.get @base_url + "assays/new?class=experimental"
-    assert_not_nil browser.find_element(:id, 'assay_title')
+    verify {  assert_not_nil browser.find_element(:id, 'assay_title') }
 
     #activities
     browser.get @base_url + "presentations/new"
-    assert_not_nil browser.find_element(:id, 'presentation_title')
+    verify {  assert_not_nil browser.find_element(:id, 'presentation_title') }
     browser.get @base_url + "events/new"
-    assert_not_nil browser.find_element(:id, 'event_title')
+    verify {  assert_not_nil browser.find_element(:id, 'event_title') }
   end
 end
