@@ -140,22 +140,22 @@ class TestSuite < Test::Unit::TestCase
     assert_equal('The SEEK Publications',browser.title)
 
     #biosamples
-    browser.get @base_url + "biosamples"
-    assert_equal('The SEEK Biosamples',browser.title)
+    #browser.get @base_url + "biosamples"
+    #assert_equal('The SEEK Biosamples',browser.title)
     browser.get @base_url + "organisms/1933753700"
     assert_equal('The SEEK Organisms',browser.title)
     browser.get @base_url + "strains"
     assert_equal('The SEEK Strains',browser.title)
     browser.get @base_url + "strains/27"
     assert_equal('The SEEK Strains',browser.title)
-    browser.get @base_url + "specimens"
-    assert_equal('The SEEK Cell cultures',browser.title)
-    browser.get @base_url + "specimens/2"
-    assert_equal('The SEEK Cell cultures',browser.title)
-    browser.get @base_url + "samples"
-    assert_equal('The SEEK Samples',browser.title)
-    browser.get @base_url + "samples/2"
-    assert_equal('The SEEK Samples',browser.title)
+    #browser.get @base_url + "specimens"
+    #assert_equal('The SEEK Cell cultures',browser.title)
+    #browser.get @base_url + "specimens/2"
+    #assert_equal('The SEEK Cell cultures',browser.title)
+    #browser.get @base_url + "samples"
+    #assert_equal('The SEEK Samples',browser.title)
+    #browser.get @base_url + "samples/2"
+    #assert_equal('The SEEK Samples',browser.title)
 
     #activities
     browser.get @base_url + "presentations"
@@ -171,13 +171,13 @@ class TestSuite < Test::Unit::TestCase
 
     #help
     browser.get @base_url + "help/index"
-    assert_equal('The SEEK Help',browser.title)
-    browser.get @base_url + "help/faq"
-    assert_equal('The SEEK Help',browser.title)
-    browser.get @base_url + "help/templates"
-    assert_equal('The SEEK Help',browser.title)
-    browser.get @base_url + "help/isa-best-practice"
-    assert_equal('The SEEK Help',browser.title)
+    assert_equal('SEEK Development Help',browser.title)
+    #browser.get @base_url + "help/faq"
+    #assert_equal('The SEEK Help',browser.title)
+    #browser.get @base_url + "help/templates"
+    #assert_equal('The SEEK Help',browser.title)
+    #browser.get @base_url + "help/isa-best-practice"
+    #assert_equal('The SEEK Help',browser.title)
 
     #tags
     browser.get @base_url + "tags/"
@@ -216,10 +216,10 @@ class TestSuite < Test::Unit::TestCase
     #biosamples
     browser.get @base_url + "strains/new"
     assert_not_nil browser.find_element(:id, 'strain_title')
-    browser.get @base_url + "specimens/new"
-    assert_not_nil browser.find_element(:id, 'specimen_title')
-    browser.get @base_url + "samples/new"
-    assert_not_nil browser.find_element(:id, 'sample_title')
+    #browser.get @base_url + "specimens/new"
+    #assert_not_nil browser.find_element(:id, 'specimen_title')
+    #browser.get @base_url + "samples/new"
+    #assert_not_nil browser.find_element(:id, 'sample_title')
 
     #isa
     browser.get @base_url + "investigations/new"
