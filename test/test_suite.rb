@@ -54,20 +54,14 @@ class TestSuite < Test::Unit::TestCase
     wait = Selenium::WebDriver::Wait.new(:timeout => 10)
     wait.until { browser.find_element(:id, "possible_data_files").displayed? }
     Selenium::WebDriver::Support::Select.new(browser.find_element(:id, "possible_data_files")).select_by(:text, "3' or Whole Gene Expression Array Template (Affymetrix)")
-    verify { assert browser.find_element(:css, "ul.related_asset_list > li").text == "3' or Whole Gene Expression Array Template (Affymetrix)  [remove]" }
+    assert browser.find_element(:css, "ul.related_asset_list > li").text == "3' or Whole Gene Expression Array Template (Affymetrix)  [remove]"
     browser.find_element(:link, "remove").click
-    verify { assert_equal "None", browser.find_element(:id, "data_file_to_list").text }
+    assert_equal "None", browser.find_element(:id, "data_file_to_list").text
     browser.find_element(:id, "include_other_project_data_files").click
     wait = Selenium::WebDriver::Wait.new(:timeout => 10)
     wait.until { browser.find_element(:id, "possible_data_files").displayed? }
     Selenium::WebDriver::Support::Select.new(browser.find_element(:id, "possible_data_files")).select_by(:text, "090714 chemostat overview fluxes & quinones wt")
-    verify { assert_equal "090714 chemostat overview fluxes & quinones wt  [remove]", browser.find_element(:css, "ul.related_asset_list > li").text }
-  end
-
-  def verify(&blk)
-    yield
-  rescue Test::Unit::AssertionFailedError => ex
-    @verification_errors << ex
+    assert_equal "090714 chemostat overview fluxes & quinones wt  [remove]", browser.find_element(:css, "ul.related_asset_list > li").text
   end
 
   def post_page(browser)
@@ -171,7 +165,7 @@ class TestSuite < Test::Unit::TestCase
 
     #help
     browser.get @base_url + "help/index"
-    assert_equal('SEEK Development Help',browser.title)
+    assert_equal('SEEK Docs Help',browser.title)
     #browser.get @base_url + "help/faq"
     #assert_equal('The SEEK Help',browser.title)
     #browser.get @base_url + "help/templates"
