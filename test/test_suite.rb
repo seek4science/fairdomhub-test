@@ -192,7 +192,7 @@ class TestSuite < Test::Unit::TestCase
     password_element.send_keys password
     login_element = browser.find_element(:id, 'login_button')
     login_element.submit
-    wait = Selenium::WebDriver::Wait.new(:timeout => 10) # seconds
+    wait = Selenium::WebDriver::Wait.new(:timeout => 20) # seconds
     wait.until { browser.find_element(:id => "user-menu") }
   end
 
