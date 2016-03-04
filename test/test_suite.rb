@@ -17,7 +17,7 @@ class TestSuite < Test::Unit::TestCase
     user_name = STDIN.gets.chomp
     puts "Please provide the password:"
     password = STDIN.noecho(&:gets).chomp
-    for_firefox(user_name, password)
+#    for_firefox(user_name, password)
     for_chrome(user_name, password)
   end
 
@@ -72,7 +72,7 @@ class TestSuite < Test::Unit::TestCase
     browser.get @base_url + "models/144?version=8"
     simulate_link = browser.find_element(:link_text, 'Simulate Model on JWS')
     simulate_link.click
-    wait = Selenium::WebDriver::Wait.new(:timeout => 10) # seconds
+    wait = Selenium::WebDriver::Wait.new(:timeout => 20) # seconds
     wait.until { browser.find_element(:id => "jws_simulator_wrapper") }
   end
 
