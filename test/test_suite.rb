@@ -79,109 +79,109 @@ class TestSuite < Test::Unit::TestCase
   def get_page(browser)
     #homepage
     browser.get @base_url
-    assert_equal('The SEEK',browser.title)
+    assert_equal('The FAIRDOMHub',browser.title)
 
     #yellow pages
     browser.get @base_url + "programmes"
-    assert_equal('The SEEK Programmes',browser.title)
+    assert_equal('The FAIRDOMHub Programmes',browser.title)
     browser.get @base_url + "programmes/2"
-    assert_equal('The SEEK Programmes',browser.title)
+    assert_equal('The FAIRDOMHub Programmes',browser.title)
     browser.get @base_url + "people"
-    assert_equal('The SEEK People',browser.title)
+    assert_equal('The FAIRDOMHub People',browser.title)
     browser.get @base_url + "people/372"
-    assert_equal('The SEEK People',browser.title)
+    assert_equal('The FAIRDOMHub People',browser.title)
     browser.get @base_url + "projects"
-    assert_equal('The SEEK Projects',browser.title)
+    assert_equal('The FAIRDOMHub Projects',browser.title)
     browser.get @base_url + "projects/19"
-    assert_equal('The SEEK Projects',browser.title)
+    assert_equal('The FAIRDOMHub Projects',browser.title)
     browser.get @base_url + "institutions"
-    assert_equal('The SEEK Institutions',browser.title)
+    assert_equal('The FAIRDOMHub Institutions',browser.title)
     browser.get @base_url + "institutions/7"
-    assert_equal('The SEEK Institutions',browser.title)
+    assert_equal('The FAIRDOMHub Institutions',browser.title)
 
     #isa
     browser.get @base_url + "investigations"
-    assert_equal('The SEEK Investigations',browser.title)
+    assert_equal('The FAIRDOMHub Investigations',browser.title)
     browser.get @base_url + "investigations/56"
-    assert_equal('The SEEK Investigations',browser.title)
+    assert_equal('The FAIRDOMHub Investigations',browser.title)
     browser.get @base_url + "studies"
-    assert_equal('The SEEK Studies',browser.title)
+    assert_equal('The FAIRDOMHub Studies',browser.title)
     browser.get @base_url + "studies/138"
-    assert_equal('The SEEK Studies',browser.title)
+    assert_equal('The FAIRDOMHub Studies',browser.title)
     browser.get @base_url + "assays"
-    assert_equal('The SEEK Assays',browser.title)
+    assert_equal('The FAIRDOMHub Assays',browser.title)
     browser.get @base_url + "assays/296"
-    assert_equal('The SEEK Assays',browser.title)
+    assert_equal('The FAIRDOMHub Assays',browser.title)
 
     #assets
     browser.get @base_url + "data_files"
-    assert_equal('The SEEK Data files',browser.title)
+    assert_equal('The FAIRDOMHub Data files',browser.title)
     browser.get @base_url + "data_files/1101"
-    assert_equal('The SEEK Data files',browser.title)
+    assert_equal('The FAIRDOMHub Data files',browser.title)
     browser.get @base_url + "data_files/1101/explore?version=1"
-    assert_equal('The SEEK Data files',browser.title)
+    assert_equal('The FAIRDOMHub Data files',browser.title)
     browser.get @base_url + "models"
-    assert_equal('The SEEK Models',browser.title)
+    assert_equal('The FAIRDOMHub Models',browser.title)
     browser.get @base_url + "models/138"
-    assert_equal('The SEEK Models',browser.title)
+    assert_equal('The FAIRDOMHub Models',browser.title)
     browser.get @base_url + "sops"
-    assert_equal('The SEEK SOPs',browser.title)
+    assert_equal('The FAIRDOMHub SOPs',browser.title)
     browser.get @base_url + "sops/203"
-    assert_equal('The SEEK SOPs',browser.title)
+    assert_equal('The FAIRDOMHub SOPs',browser.title)
     browser.get @base_url + "publications"
-    assert_equal('The SEEK Publications',browser.title)
+    assert_equal('The FAIRDOMHub Publications',browser.title)
     browser.get @base_url + "publications/240"
-    assert_equal('The SEEK Publications',browser.title)
+    assert_equal('The FAIRDOMHub Publications',browser.title)
 
     #biosamples
     #browser.get @base_url + "biosamples"
-    #assert_equal('The SEEK Biosamples',browser.title)
+    #assert_equal('The FAIRDOMHub Biosamples',browser.title)
     browser.get @base_url + "organisms/1933753700"
-    assert_equal('The SEEK Organisms',browser.title)
+    assert_equal('The FAIRDOMHub Organisms',browser.title)
     browser.get @base_url + "strains"
-    assert_equal('The SEEK Strains',browser.title)
+    assert_equal('The FAIRDOMHub Strains',browser.title)
     browser.get @base_url + "strains/27"
-    assert_equal('The SEEK Strains',browser.title)
+    assert_equal('The FAIRDOMHub Strains',browser.title)
     #browser.get @base_url + "specimens"
-    #assert_equal('The SEEK Cell cultures',browser.title)
+    #assert_equal('The FAIRDOMHub Cell cultures',browser.title)
     #browser.get @base_url + "specimens/2"
-    #assert_equal('The SEEK Cell cultures',browser.title)
+    #assert_equal('The FAIRDOMHub Cell cultures',browser.title)
     #browser.get @base_url + "samples"
-    #assert_equal('The SEEK Samples',browser.title)
+    #assert_equal('The FAIRDOMHub Samples',browser.title)
     #browser.get @base_url + "samples/2"
-    #assert_equal('The SEEK Samples',browser.title)
+    #assert_equal('The FAIRDOMHub Samples',browser.title)
 
     #activities
     browser.get @base_url + "presentations"
-    assert_equal('The SEEK Presentations',browser.title)
+    assert_equal('The FAIRDOMHub Presentations',browser.title)
     browser.get @base_url + "presentations/52"
-    assert_equal('The SEEK Presentations',browser.title)
+    assert_equal('The FAIRDOMHub Presentations',browser.title)
     browser.get @base_url + "presentations/52/content_blobs/2149/view_pdf_content"
-    assert_equal('The SEEK : Viewing SeekNewFeaturesPalsParis2013.odp',browser.title)
+    assert_equal('The FAIRDOMHub : Viewing SeekNewFeaturesPalsParis2013.odp',browser.title)
     browser.get @base_url + "events"
-    assert_equal('The SEEK Events',browser.title)
+    assert_equal('The FAIRDOMHub Events',browser.title)
     browser.get @base_url + "events/26"
-    assert_equal('The SEEK Events',browser.title)
+    assert_equal('The FAIRDOMHub Events',browser.title)
 
     #help
     browser.get @base_url + "help/index"
     assert_equal('SEEK Docs Help',browser.title)
     #browser.get @base_url + "help/faq"
-    #assert_equal('The SEEK Help',browser.title)
+    #assert_equal('The FAIRDOMHub Help',browser.title)
     #browser.get @base_url + "help/templates"
-    #assert_equal('The SEEK Help',browser.title)
+    #assert_equal('The FAIRDOMHub Help',browser.title)
     #browser.get @base_url + "help/isa-best-practice"
-    #assert_equal('The SEEK Help',browser.title)
+    #assert_equal('The FAIRDOMHub Help',browser.title)
 
     #tags
     browser.get @base_url + "tags/"
-    assert_equal('The SEEK',browser.title)
+    assert_equal('The FAIRDOMHub',browser.title)
     browser.get @base_url + "tags/19"
-    assert_equal('The SEEK',browser.title)
+    assert_equal('The FAIRDOMHub',browser.title)
 
     #imprint
     browser.get @base_url + "home/imprint"
-    assert_equal('The SEEK',browser.title)
+    assert_equal('The FAIRDOMHub',browser.title)
   end
 
   def login(browser, user_name, password)
