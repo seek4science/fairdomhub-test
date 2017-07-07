@@ -17,20 +17,23 @@ class TestSuite < Test::Unit::TestCase
     user_name = STDIN.gets.chomp
     puts "Please provide the password:"
     password = STDIN.noecho(&:gets).chomp
-#    for_firefox(user_name, password)
+    for_firefox(user_name, password)
     for_chrome(user_name, password)
   end
 
   private
 
   def for_firefox(user_name, password)
-    browser = Selenium::WebDriver.for :firefox
+    #caps = Selenium::WebDriver::Remote::Capabilities.firefox marionette: true
+    #browser = Selenium::WebDriver.for :firefox, desired_capabilities: caps   
+    
+    browser = Selenium::WebDriver.for :firefox, marionette: true
     browser.manage().window.maximize()
     login(browser, user_name, password)
     get_page(browser)
     create_page(browser)
     post_page(browser)
-    association_box(browser)
+    #association_box(browser)
     browser.quit
   end
 
@@ -43,12 +46,12 @@ class TestSuite < Test::Unit::TestCase
     get_page(browser)
     create_page(browser)
     post_page(browser)
-    association_box(browser)
+    #association_box(browser)
     browser.quit
   end
 
   def association_box(browser)
-    browser.get(@base_url + "/assays/new?class=experimental")
+    browser.get(@base_url + "/assays/new?class=experimental")    
     assert browser.find_element(:xpath, "//form[@id='new_assay']/div[11]/div").text == "Data files"
     browser.find_element(:xpath, "//form[@id='new_assay']/div[11]/div").click
     wait = Selenium::WebDriver::Wait.new(:timeout => 10)
@@ -69,9 +72,9 @@ class TestSuite < Test::Unit::TestCase
   end
 
   def simulate_jws(browser)
-    browser.get @base_url + "models/144?version=8"
-    simulate_link = browser.find_element(:link_text, 'Simulate Model on JWS')
-    simulate_link.click
+    browser.get @base_url + "models/144/simulate?version=8&constraint_based=1"
+    #simulate_link = browser.find_element(:link_text, 'Simulate Model on JWS')
+    #simulate_link.click
     wait = Selenium::WebDriver::Wait.new(:timeout => 20) # seconds
     wait.until { browser.find_element(:id => "jws_simulator_wrapper") }
   end
@@ -83,104 +86,82 @@ class TestSuite < Test::Unit::TestCase
 
     #yellow pages
     browser.get @base_url + "programmes"
-    assert_equal('The FAIRDOMHub Programmes',browser.title)
-    browser.get @base_url + "programmes/2"
-    assert_equal('The FAIRDOMHub Programmes',browser.title)
+    assert_equal('Programmes',browser.title)
+    browser.get @base_url + "programmes/1"
+    assert_equal('SysMO',browser.title)
     browser.get @base_url + "people"
-    assert_equal('The FAIRDOMHub People',browser.title)
+    assert_equal('People',browser.title)
     browser.get @base_url + "people/372"
-    assert_equal('The FAIRDOMHub People',browser.title)
+    assert_equal('Quyen Nguyen',browser.title)
     browser.get @base_url + "projects"
-    assert_equal('The FAIRDOMHub Projects',browser.title)
+    assert_equal('Projects',browser.title)
     browser.get @base_url + "projects/19"
-    assert_equal('The FAIRDOMHub Projects',browser.title)
+    assert_equal('FAIRDOM',browser.title)
     browser.get @base_url + "institutions"
-    assert_equal('The FAIRDOMHub Institutions',browser.title)
+    assert_equal('Institutions',browser.title)
     browser.get @base_url + "institutions/7"
-    assert_equal('The FAIRDOMHub Institutions',browser.title)
+    assert_equal('Heidelberg Institute for Theoretical Studies (HITS gGmbH)',browser.title)
 
     #isa
     browser.get @base_url + "investigations"
-    assert_equal('The FAIRDOMHub Investigations',browser.title)
+    assert_equal('Investigations',browser.title)
     browser.get @base_url + "investigations/56"
-    assert_equal('The FAIRDOMHub Investigations',browser.title)
+    assert_equal('Glucose metabolism in Plasmodium falciparum trophozoites',browser.title)
     browser.get @base_url + "studies"
-    assert_equal('The FAIRDOMHub Studies',browser.title)
+    assert_equal('Studies',browser.title)
     browser.get @base_url + "studies/138"
-    assert_equal('The FAIRDOMHub Studies',browser.title)
+    assert_equal('Model analysis',browser.title)
     browser.get @base_url + "assays"
-    assert_equal('The FAIRDOMHub Assays',browser.title)
+    assert_equal('Assays',browser.title)
     browser.get @base_url + "assays/296"
-    assert_equal('The FAIRDOMHub Assays',browser.title)
+    assert_equal('Supply-demand analysis',browser.title)
 
     #assets
     browser.get @base_url + "data_files"
-    assert_equal('The FAIRDOMHub Data files',browser.title)
+    assert_equal('Data files',browser.title)
     browser.get @base_url + "data_files/1101"
-    assert_equal('The FAIRDOMHub Data files',browser.title)
+    assert_equal('Template for proteomics (2D gel)',browser.title)
     browser.get @base_url + "data_files/1101/explore?version=1"
-    assert_equal('The FAIRDOMHub Data files',browser.title)
+    assert_equal('Template for proteomics (2D gel)',browser.title)
     browser.get @base_url + "models"
-    assert_equal('The FAIRDOMHub Models',browser.title)
+    assert_equal('Models',browser.title)
     browser.get @base_url + "models/138"
-    assert_equal('The FAIRDOMHub Models',browser.title)
+    assert_equal('Kinetic model for incubation (penkler2)',browser.title)
     browser.get @base_url + "sops"
-    assert_equal('The FAIRDOMHub SOPs',browser.title)
+    assert_equal('SOPs',browser.title)
     browser.get @base_url + "sops/203"
-    assert_equal('The FAIRDOMHub SOPs',browser.title)
+    assert_equal('Validation experiments',browser.title)
     browser.get @base_url + "publications"
-    assert_equal('The FAIRDOMHub Publications',browser.title)
-    browser.get @base_url + "publications/240"
-    assert_equal('The FAIRDOMHub Publications',browser.title)
+    assert_equal('Publications',browser.title)
+    browser.get @base_url + "publications/300"
+    assert_equal('FAIRDOMHub: a repository and collaboration environment for sharing systems biology research',browser.title)
 
     #biosamples
-    #browser.get @base_url + "biosamples"
-    #assert_equal('The FAIRDOMHub Biosamples',browser.title)
+    browser.get @base_url + "organisms"
+    assert_equal('Organisms',browser.title)
     browser.get @base_url + "organisms/1933753700"
-    assert_equal('The FAIRDOMHub Organisms',browser.title)
-    browser.get @base_url + "strains"
-    assert_equal('The FAIRDOMHub Strains',browser.title)
-    browser.get @base_url + "strains/27"
-    assert_equal('The FAIRDOMHub Strains',browser.title)
-    #browser.get @base_url + "specimens"
-    #assert_equal('The FAIRDOMHub Cell cultures',browser.title)
-    #browser.get @base_url + "specimens/2"
-    #assert_equal('The FAIRDOMHub Cell cultures',browser.title)
-    #browser.get @base_url + "samples"
-    #assert_equal('The FAIRDOMHub Samples',browser.title)
-    #browser.get @base_url + "samples/2"
-    #assert_equal('The FAIRDOMHub Samples',browser.title)
+    assert_equal('Acidithiobacillus caldus',browser.title)
+    browser.get @base_url + "sample_types"
+    assert_equal('The FAIRDOMHub',browser.title)
+    browser.get @base_url + "sample_types/2"
+    assert_equal('YEAST_chemostat_steady_state_culture',browser.title)    
 
     #activities
     browser.get @base_url + "presentations"
-    assert_equal('The FAIRDOMHub Presentations',browser.title)
+    assert_equal('Presentations',browser.title)
     browser.get @base_url + "presentations/52"
-    assert_equal('The FAIRDOMHub Presentations',browser.title)
+    assert_equal('Seek new and upcoming features, Pals meeting in Heidelberg 2012',browser.title)
     browser.get @base_url + "presentations/52/content_blobs/2149/view_pdf_content"
-    assert_equal('The FAIRDOMHub : Viewing SeekNewFeaturesPalsParis2013.odp',browser.title)
+    assert_equal('The FAIRDOMHub: Viewing SeekNewFeaturesPalsParis2013.odp',browser.title)
     browser.get @base_url + "events"
-    assert_equal('The FAIRDOMHub Events',browser.title)
+    assert_equal('Events',browser.title)
     browser.get @base_url + "events/26"
-    assert_equal('The FAIRDOMHub Events',browser.title)
-
-    #help
-    browser.get @base_url + "help/index"
-    assert_equal('SEEK Docs Help',browser.title)
-    #browser.get @base_url + "help/faq"
-    #assert_equal('The FAIRDOMHub Help',browser.title)
-    #browser.get @base_url + "help/templates"
-    #assert_equal('The FAIRDOMHub Help',browser.title)
-    #browser.get @base_url + "help/isa-best-practice"
-    #assert_equal('The FAIRDOMHub Help',browser.title)
+    assert_equal('1st EraSysApp PALs meeting',browser.title)
 
     #tags
     browser.get @base_url + "tags/"
     assert_equal('The FAIRDOMHub',browser.title)
     browser.get @base_url + "tags/19"
-    assert_equal('The FAIRDOMHub',browser.title)
-
-    #imprint
-    browser.get @base_url + "home/imprint"
     assert_equal('The FAIRDOMHub',browser.title)
   end
 
